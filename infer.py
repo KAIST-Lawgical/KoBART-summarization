@@ -1,6 +1,6 @@
 import torch
 import streamlit as st
-from kobart import get_kobart_tokenizer
+from KoBART.kobart import get_kobart_tokenizer
 from transformers.models.bart import BartForConditionalGeneration
 
 @st.cache

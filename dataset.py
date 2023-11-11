@@ -60,6 +60,7 @@ class KoBARTSummaryDataset(Dataset):
 
 class KobartSummaryModule(pl.LightningDataModule):
     def __init__(self, train_file,
+                 valid_file,
                  test_file, tok,
                  max_len=512,
                  batch_size=8,
@@ -68,6 +69,7 @@ class KobartSummaryModule(pl.LightningDataModule):
         self.batch_size = batch_size
         self.max_len = max_len
         self.train_file_path = train_file
+        self.valid_file_path = valid_file
         self.test_file_path = test_file
         self.tok = tok
         self.num_workers = num_workers
@@ -88,6 +90,9 @@ class KobartSummaryModule(pl.LightningDataModule):
         self.train = KoBARTSummaryDataset(self.train_file_path,
                                  self.tok,
                                  self.max_len)
+        self.valid = KoBARTSummaryDataset(self.valid_file_path,
+                                self.tok,
+                                self.max_len)
         self.test = KoBARTSummaryDataset(self.test_file_path,
                                 self.tok,
                                 self.max_len)
@@ -99,7 +104,7 @@ class KobartSummaryModule(pl.LightningDataModule):
         return train
 
     def val_dataloader(self):
-        val = DataLoader(self.test,
+        val = DataLoader(self.valid,
                          batch_size=self.batch_size,
                          num_workers=self.num_workers, shuffle=False)
         return val

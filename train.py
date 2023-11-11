@@ -29,7 +29,10 @@ class ArgsBase():
                             type=str,
                             default='data/train.tsv',
                             help='train file')
-
+        parser.add_argument('--valid_file',
+                            type=str,
+                            default='data/valid.tsv',
+                            help='valid file')
         parser.add_argument('--test_file',
                             type=str,
                             default='data/test.tsv',
@@ -163,6 +166,7 @@ if __name__ == '__main__':
     logging.info(args)
 
     dm = KobartSummaryModule(args.train_file,
+                        args.valid_file,
                         args.test_file,
                         tokenizer,
                         batch_size=args.batch_size,
