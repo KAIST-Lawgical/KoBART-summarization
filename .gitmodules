@@ -1,3 +1,4 @@
 [submodule "KoBART"]
 	path = KoBART
 	url = https://github.com/KAIST-Lawgical/KoBART
+	branch = main

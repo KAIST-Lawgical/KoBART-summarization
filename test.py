@@ -1,5 +1,8 @@
 import torch
-from KoBART.kobart import get_kobart_tokenizer
+import sys
+import os
+sys.path.append(os.path.join(os.path.abspath(os.path.dirname(__file__)), "KoBART"))
+from kobart import get_kobart_tokenizer
 from transformers.models.bart import BartForConditionalGeneration
 
 
